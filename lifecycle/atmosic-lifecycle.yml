@@ -1,0 +1,66 @@
+generated: '2026-08-02'
+method: searched
+source: https://github.com/Atmosic/openair/releases
+subject: OpenAir SDK and Atmosic SoC platforms
+versioning:
+  scheme: calendar-version
+  pattern: YY.MM.PATCH
+  current: 26.06.0
+  current_date: '2026-06-30'
+  branch_convention: rel_<version>
+  development_branch: main
+  cadence: roughly every 2-4 months, with out-of-band patch releases for critical defects
+  docs: https://atmosic.com/public/OpenAir_SDK_doc/index.html
+  version_file: https://github.com/Atmosic/openair/blob/main/SDK_VERSION
+deprecation:
+  policy_url: https://github.com/Atmosic/openair/releases
+  policy_published: false
+  practice: >-
+    Atmosic does not publish a formal written deprecation or sunset policy. In practice
+    deprecation is announced in the GitHub release notes: a superseded release is relabelled
+    "[DEPRECATED] Do not use this version. Please use <successor> instead." with a link to
+    the replacement tag, and platform-level deprecation is stated in the release that drops
+    support. Documentation is archived per version (OpenAir_26_04_0/, OpenAir_25_11_0/,
+    OpenAir_25_07_0/) so deprecated releases remain readable.
+  sunset_header: false
+  examples:
+  - subject: ATMx2xx platforms
+    deprecated_in: 25.07.0
+    note: OpenAir targets ATM33/e and ATM34/e; ATMx2xx platforms deprecated as of 25.07.0
+  - subject: OpenAir 25.11.0
+    deprecated_in: '2026-01-23'
+    superseded_by: 25.11.1
+    reason: critical ATM34 WFI hang and malformed secure journal crash
+  - subject: OpenAir 25.07.1
+    deprecated_in: '2026-01-23'
+    superseded_by: 25.07.2
+  - subject: hal_atmosic repository
+    status: archived
+    superseded_by: https://github.com/Atmosic/hal_atmosic_lib
+  - subject: apps repository
+    status: archived
+    superseded_by: https://github.com/Atmosic/openair
+documentation_archive:
+  current: https://atmosic.com/public/OpenAir_SDK_doc/index.html
+  archived_versions: ['26.04.0', '25.11.0', '25.07.0']
+status_page: null
+status_page_note: >-
+  No status page found. Probed status.atmosic.com (DNS unresolved) and searched the site;
+  Atmosic operates no hosted API service, so there is no uptime surface to publish.
+sla: null
+sla_note: >-
+  No public SLA. Commercial SDK, datasheets and support are delivered through the NDA-gated
+  customer portal at https://atmosic.com/portal-login/.
+support:
+  contact: https://atmosic.com/contact/
+  portal: https://atmosic.com/portal-login/
+  note: New customers file a support ticket; existing customers under NDA log in to the portal.
+deprecated_operations: []
+x-evidence:
+- fetched: '2026-08-02'
+  url: https://api.github.com/repos/Atmosic/openair/releases
+  http_status: 200
+- fetched: '2026-08-02'
+  url: https://status.atmosic.com/
+  http_status: null
+  note: DNS did not resolve

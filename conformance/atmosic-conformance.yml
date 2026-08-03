@@ -1,0 +1,85 @@
+generated: '2026-08-02'
+method: searched
+source: https://atmosic.com/products/
+scope: >-
+  Atmosic publishes no public web API, so the cross-cutting web-API standards this
+  artifact normally asserts (OAuth 2.0, OIDC, RFC 9457, JSON:API, OData, pagination,
+  idempotency) are all not applicable. What follows is the standards posture Atmosic
+  genuinely claims for its silicon, SDK and tooling, each with the evidence it was
+  read from.
+standards:
+- id: bluetooth-le-5.3
+  conforms: true
+  evidence: 'ATM33/e Series product page states "Bluetooth Low-Energy 5.3 compliant" with 2 Mbps, 1 Mbps, 500 kbps and 125 kbps PHY rates'
+  source: https://atmosic.com/products/the-atm33-series/
+- id: bluetooth-le-6.0
+  conforms: true
+  evidence: 'ATM34 Series product page states "Bluetooth Low-Energy 6.0 compliant" with 2 Mbps, 1 Mbps, 500 kbps and 125 kbps Coded PHY rates'
+  source: https://atmosic.com/products_atm34/
+- id: ieee-802.15.4
+  conforms: true
+  evidence: ATM34 Series product page lists 802.15.4 radio support alongside Bluetooth LE
+  source: https://atmosic.com/products_atm34/
+- id: bluetooth-sig-membership
+  conforms: true
+  evidence: Atmosic lists Bluetooth SIG as an alliance/standards partner
+  source: https://atmosic.com/partners/bluetooth-sig/
+- id: psa-certified-level-1
+  conforms: true
+  evidence: >-
+    PSA Certified public product registry lists the Atmosic ATM33/e Series as
+    "PSA Certified Level 1 v2.2 REL 01", certificate 0632793520085-20033, issued
+    16/12/2025, certification holder Atmosic Technologies, evaluated by Keysight
+    Riscure with TF-M v1.8. Recorded from the third-party registry — Atmosic's own
+    product pages do not currently cite it.
+  source: https://products.psacertified.org/products/atm33e-series
+- id: arm-trustzone
+  conforms: true
+  evidence: 'ATM33 and ATM34 product pages both state "ARM TrustZone, HW Root of Trust, Secure Boot, Secure Execution & Debug"'
+  source: https://atmosic.com/products_atm34/
+- id: mcuboot-secure-boot
+  conforms: true
+  evidence: OpenAir SDK ships an Atmosic fork of MCUboot as the bootloader; 26.04.0 release notes add swap-with-offset support enabled by default
+  source: https://github.com/Atmosic/mcuboot
+- id: zephyr-rtos
+  conforms: true
+  evidence: OpenAir SDK is built on the Zephyr RTOS and distributed as a west manifest; 26.06.0 tracks Zephyr kernel 4.4.0
+  source: https://github.com/Atmosic/openair
+- id: cmsis
+  conforms: true
+  evidence: OpenAir west.yml pulls zephyrproject-rtos/cmsis and CMSIS_6 as HAL modules for the Arm Cortex-M33F core
+  source: https://raw.githubusercontent.com/Atmosic/openair/main/west.yml
+- id: protobuf-proto3
+  conforms: true
+  evidence: 'atm_isp.proto declares syntax = "proto3" and defines the ISP archive format'
+  source: grpc/atmosic-atm-isp.proto
+- id: hayes-at-command-set
+  conforms: true
+  evidence: >-
+    OpenAir publishes an AT command set over UART with the standard test/query/execute
+    command forms and OK / ERR responses, organised into SYS*, BLE*, GATT* and TAG* groups
+  source: https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html
+- id: spdx-license-identifiers
+  conforms: true
+  evidence: OpenAir source files and west-commands.yml carry SPDX-License-Identifier headers; a /LICENSES directory is published
+  source: https://github.com/Atmosic/openair
+not_applicable:
+- id: oauth2
+  reason: no public web API or hosted authorization server
+- id: openid-connect
+  reason: no public web API; /.well-known/openid-configuration returns 404
+- id: rfc9457-problem-details
+  reason: no HTTP API; errors are AT command ERR:<code> responses (see errors/atmosic-error-codes.yml)
+- id: rfc9116-security-txt
+  reason: probed and absent (see well-known/atmosic-well-known.yml)
+- id: openapi
+  reason: no REST API published; contract discovery probes all returned 404
+- id: asyncapi
+  reason: no hosted event, streaming or webhook surface
+compliance_program_published: false
+compliance_note: >-
+  Atmosic publishes no trust center, compliance page or certification index of its own.
+  The PSA Certified Level 1 entry above is verifiable in the PSA Certified public registry
+  but is not surfaced on atmosic.com, and probe-security-programs.py found no trust center
+  and no vulnerability disclosure program. No Compliance pointer is emitted for this
+  provider because there is no provider-published compliance program to point at.

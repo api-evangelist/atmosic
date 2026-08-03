@@ -1,0 +1,94 @@
+generated: '2026-08-02'
+method: searched
+source: https://raw.githubusercontent.com/Atmosic/openair/main/west/west-commands.yml
+name: Atmosic west extensions + OpenAir tooling
+description: >-
+  Atmosic does not publish a standalone branded CLI binary. Its first-party command
+  surface is a set of west extension commands registered by the OpenAir SDK (west is the
+  Zephyr project's meta-tool), plus a collection of Python scripts under
+  openair/tools/scripts and a set of downloadable desktop programming utilities.
+install:
+- method: west
+  commands:
+  - west init -m https://github.com/Atmosic/openair.git zephyrproject
+  - cd zephyrproject
+  - west update
+  note: >-
+    Requires the Zephyr host toolchain to be installed first, per the upstream Zephyr
+    getting-started instructions. The Atmosic extension commands become available once
+    the openair repository is in the workspace.
+  docs: https://atmosic.com/public/OpenAir_SDK_doc/getting_started_guide/installation.html
+- method: installer
+  name: Atmosic SDK installer
+  platforms: [linux, macos, windows]
+  note: Commercial SDK installers are distributed through the NDA-gated customer portal.
+  url: https://atmosic.com/portal-login/
+commands:
+- name: west secjrnl
+  class: SecJrnlCommand
+  help: Atmosic tools for secure journal management.
+  source: west/sec_jrnl_west_extension.py
+- name: west atmotp
+  class: AtmOtpCommand
+  help: Atmosic tools for OTP management.
+  source: west/atm_otp_west_extension.py
+- name: west atm_arch
+  class: AtmArchCommand
+  help: Atmosic ISP file generate, show and program with bin files.
+  source: west/atm_arch_extension.py
+  related: grpc/atmosic-atm-isp.proto
+- name: west dump
+  class: AtmDumpCommand
+  help: Atmosic tools for dumping binary data from device.
+  source: west/atm_dump_extension.py
+- name: west zsg
+  class: AtmZsgCommand
+  help: Atmosic ZSG tool for generate and show bin files.
+  source: west/atm_zsg_extension.py
+- name: west slkey
+  class: AtmSlKeyCommand
+  help: Atmosic side load key tools for read and write to device.
+  source: west/atm_slkey_extension.py
+scripts:
+  path: openair/tools/scripts
+  url: https://github.com/Atmosic/openair/tree/main/tools/scripts
+  entries:
+  - {name: atm_isp, description: In-system-programming archive tool}
+  - {name: atm_isp.proto, description: proto3 schema for the ISP archive format}
+  - {name: atm_openocd.py, description: OpenOCD driver for flashing and debugging Atmosic targets}
+  - {name: gen_atm_partition_info.py, description: Generate partition layout information}
+  - {name: gen_tag_data_bin_file.py, description: Generate tag data binary}
+  - {name: gen_tag_header.py, description: Generate tag header}
+  - {name: sec_debug_unlock.py, description: Secure debug unlock using a signed key}
+desktop_tools:
+- name: Pinmux Tool
+  version: 26.04.0
+  description: Pin multiplexing configuration utility.
+  url: https://atmosic.com/public/Pinmux/index.html
+- name: MP Tool
+  version: 2.1.15.5
+  description: Mass production programming solution for ATM2/ATM3/ATM33/ATM34.
+  url: https://atmosic.com/software-utilities/
+- name: RF Tool
+  version: 1.6.16.9
+  description: Radio frequency testing and validation.
+  url: https://atmosic.com/software-utilities/
+- name: Flash Programming Tool
+  version: 1.0.0.35
+  description: Firmware programming utility.
+  url: https://atmosic.com/software-utilities/
+- name: ROM UART Bootloader Host
+  version: 26.03.0
+  description: Bootloader communication host application.
+  url: https://atmosic.com/software-utilities/
+docs: https://atmosic.com/public/OpenAir_SDK_doc/index.html
+x-evidence:
+- fetched: '2026-08-02'
+  url: https://raw.githubusercontent.com/Atmosic/openair/main/west/west-commands.yml
+  http_status: 200
+- fetched: '2026-08-02'
+  url: https://api.github.com/repos/Atmosic/openair/contents/tools/scripts
+  http_status: 200
+- fetched: '2026-08-02'
+  url: https://atmosic.com/software-utilities/
+  http_status: 200

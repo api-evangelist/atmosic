@@ -1,0 +1,58 @@
+generated: '2026-08-02'
+method: probed
+source: https://atmosic.com
+host: https://atmosic.com
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+- path: /llms.txt
+  status: 404
+- path: /openapi.json
+  status: 404
+- path: /swagger.json
+  status: 404
+- path: /graphql
+  status: 404
+also_probed:
+- host: https://www.atmosic.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://portal.atmosic.com
+  status: unresolved
+- host: https://developer.atmosic.com
+  status: unresolved
+- host: https://docs.atmosic.com
+  status: unresolved
+notes: >-
+  No /.well-known/ discovery surface is published on any Atmosic host. Atmosic ships an
+  embedded developer surface — the OpenAir Zephyr SDK, an AT command set over UART, an
+  atm_isp protobuf schema, desktop programming utilities and evaluation kits — rather
+  than a public web API, so no OAuth/OIDC discovery documents, security.txt, API catalog,
+  agent card or llms.txt are present. Probes were run with a browser User-Agent because
+  atmosic.com returns 403 to default bot agents; all results above are genuine 404s from
+  the origin, not bot blocks.
+pointer_note: >-
+  Deliberately NOT wired as a common[].type WellKnown pointer in apis.yml. Every probed
+  path returned 404, so there is no well-known discovery surface for that pointer to
+  represent; emitting it would credit Atmosic with a capability it does not publish.
+  This file is retained as probe provenance so a later re-run can detect a change.
+x-evidence:
+  fetched: '2026-08-02'
+  method: curl HEAD/GET with browser User-Agent, redirects followed

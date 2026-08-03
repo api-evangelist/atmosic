@@ -1,0 +1,117 @@
+generated: '2026-08-02'
+method: searched
+source: https://github.com/Atmosic
+notes: >-
+  Atmosic distributes its developer surface as source, not as language-registry
+  packages. Searches of npm, PyPI, crates.io and RubyGems for "atmosic" returned zero
+  results on 2026-08-02, which is expected for a fabless semiconductor vendor: the
+  SDK is a Zephyr RTOS west workspace pulled from the Atmosic GitHub organization.
+  The entries below are the first-party source distributions that make up that
+  workspace, plus the two first-party mobile applications.
+registries_checked:
+- registry: npm
+  query: atmosic
+  results: 0
+- registry: pypi
+  query: atmosic
+  results: 0
+- registry: crates.io
+  query: atmosic
+  results: 0
+- registry: rubygems
+  query: atmosic
+  results: 0
+packages:
+- language: c
+  registry: github
+  name: openair
+  description: >-
+    OpenAir — the top-level Atmosic SDK repository. A Zephyr RTOS west manifest that
+    assembles the full workspace (HAL, MCUboot, micro-ecc, Atmosic Zephyr fork,
+    upstream Zephyr modules) plus boards, drivers, samples, applications and tools.
+  url: https://github.com/Atmosic/openair
+  install: west init -m https://github.com/Atmosic/openair.git zephyrproject && cd zephyrproject && west update
+  version: 26.06.0
+  official: true
+  role: sdk
+- language: c
+  registry: github
+  name: zephyr
+  description: Atmosic fork of the Zephyr RTOS kernel, pinned by the OpenAir west manifest.
+  url: https://github.com/Atmosic/zephyr
+  license: Apache-2.0
+  official: true
+  role: dependency
+- language: c
+  registry: github
+  name: hal_atmosic_lib
+  description: Hardware abstraction layer libraries for Atmosic SoCs in the Zephyr environment.
+  url: https://github.com/Atmosic/hal_atmosic_lib
+  license: Apache-2.0
+  official: true
+  role: hal
+- language: c
+  registry: github
+  name: mcuboot
+  description: Atmosic fork of MCUboot, the secure bootloader for 32-bit microcontrollers.
+  url: https://github.com/Atmosic/mcuboot
+  license: Apache-2.0
+  official: true
+  role: bootloader
+- language: c
+  registry: github
+  name: micro-ecc
+  description: ECDH and ECDSA implementation used for secure boot / secure debug key operations.
+  url: https://github.com/Atmosic/micro-ecc
+  license: BSD-2-Clause
+  official: true
+  role: dependency
+- language: c
+  registry: github
+  name: openair_tag
+  description: OpenAir fork for the Atmosic tag reference project.
+  url: https://github.com/Atmosic/openair_tag
+  license: Apache-2.0
+  official: true
+  role: reference-application
+- language: c
+  registry: github
+  name: hal_atmosic
+  description: Hardware Abstraction Layer for Atmosic SoCs in the Zephyr environment.
+  url: https://github.com/Atmosic/hal_atmosic
+  license: Apache-2.0
+  official: true
+  archived: true
+  role: hal
+- language: c
+  registry: github
+  name: apps
+  description: Atmosic open source Zephyr applications.
+  url: https://github.com/Atmosic/apps
+  license: Apache-2.0
+  official: true
+  archived: true
+  role: samples
+mobile_apps:
+- name: Atmosic DevTools
+  platform: ios
+  url: https://apps.apple.com/us/app/atmosic-devtools/id1592941402
+  version: 2.5.8
+  official: true
+  description: BLE scanning, RSSI, live sensor data, OTA update and Blinky demo against Atmosic EVKs.
+- name: Atmosic DevTools
+  platform: android
+  url: https://play.google.com/store/apps/details?id=com.atmosic.devtoolstar
+  version: 1.0.0.44
+  official: true
+  description: BLE scanning, RSSI, live sensor data, OTA update and Blinky demo against Atmosic EVKs.
+x-evidence:
+- fetched: '2026-08-02'
+  url: https://api.github.com/orgs/Atmosic/repos
+  http_status: 200
+- fetched: '2026-08-02'
+  url: https://raw.githubusercontent.com/Atmosic/openair/main/west.yml
+  http_status: 200
+- fetched: '2026-08-02'
+  url: https://atmosic.com/software-utilities/
+  http_status: 200

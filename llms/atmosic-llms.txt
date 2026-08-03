@@ -1,0 +1,66 @@
+# Atmosic Technologies
+
+> Fabless semiconductor company (San Jose, CA) designing ultra-low-power Bluetooth LE and 802.15.4 system-on-chips for the Internet of Things, built around patented energy-harvesting and controlled wake-up receiver technology with the goal of eliminating device dependence on batteries. Atmosic publishes an EMBEDDED developer surface — the open-source OpenAir SDK on Zephyr RTOS, an AT command set over UART, an atm_isp protobuf schema, and desktop programming tooling — not a public web API. Contract discovery on 2026-08-02 found no OpenAPI, GraphQL, MCP server, AsyncAPI, agent card or /.well-known/ surface on any Atmosic host.
+
+## Products
+
+- [ATM2 Series](https://atmosic.com/products/): first-generation ultra-low-power Bluetooth LE SoCs
+- [ATM3 Series](https://atmosic.com/products/): Bluetooth LE SoCs with energy harvesting
+- [ATM33/e Series](https://atmosic.com/products/the-atm33-series/): Bluetooth LE 5.3 compliant, 64 MHz Arm Cortex-M33F, Arm TrustZone, hardware root of trust, secure boot; the /e variant adds energy harvesting. PSA Certified Level 1 (certificate 0632793520085-20033).
+- [ATM34/e Series](https://atmosic.com/products_atm34/): Bluetooth LE 6.0 compliant plus 802.15.4, 64 MHz Arm Cortex-M33F with DSP, TrustZone, AES-128/256, SHA-2/HMAC-256, TRNG
+- [Product Selector Guide](https://atmosic.com/products/)
+
+## Developer Resources
+
+- [OpenAir SDK documentation](https://atmosic.com/public/OpenAir_SDK_doc/index.html) — version 26.06.0, with archives for 26.04.0, 25.11.0 and 25.07.0
+- [Installation guide](https://atmosic.com/public/OpenAir_SDK_doc/getting_started_guide/installation.html)
+- [Introduction](https://atmosic.com/public/OpenAir_SDK_doc/introduction/introduction.html)
+- [AT command set reference](https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html) — SYS*, BLE*, GATT* and TAG* command groups over UART
+- [AT command error code reference](https://atmosic.com/public/OpenAir_SDK_doc/openair/subsys/at_cmd_set/README_errors.html)
+- [Samples](https://atmosic.com/public/OpenAir_SDK_doc/samples/samples.html)
+- [Developer kits](https://atmosic.com/support_developer_kits/) — ATMEVK evaluation kits for every SoC family
+- [Software utilities](https://atmosic.com/software-utilities/) — Pinmux Tool, MP Tool, RF Tool, Flash Programming Tool, ROM UART Bootloader Host
+- [Customer portal (NDA-gated commercial SDK and datasheets)](https://atmosic.com/portal-login/)
+
+## Source Code
+
+- [GitHub organization](https://github.com/Atmosic)
+- [openair](https://github.com/Atmosic/openair) — top-level SDK, a Zephyr west manifest. `west init -m https://github.com/Atmosic/openair.git zephyrproject`
+- [zephyr](https://github.com/Atmosic/zephyr) — Atmosic Zephyr RTOS fork (Apache-2.0)
+- [hal_atmosic_lib](https://github.com/Atmosic/hal_atmosic_lib) — hardware abstraction layer (Apache-2.0)
+- [mcuboot](https://github.com/Atmosic/mcuboot) — secure bootloader fork (Apache-2.0)
+- [micro-ecc](https://github.com/Atmosic/micro-ecc) — ECDH/ECDSA for secure boot and secure debug (BSD-2-Clause)
+- [openair_tag](https://github.com/Atmosic/openair_tag) — tag reference project
+- [Releases / changelog](https://github.com/Atmosic/openair/releases)
+
+## Specs and Artifacts
+
+- [atm_isp protobuf schema](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/grpc/atmosic-atm-isp.proto) — proto3 definition of the in-system-programming archive format
+- [Packages and SDKs](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/packages/atmosic-packages.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/conventions/atmosic-conventions.yml)
+- [Error codes](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/errors/atmosic-error-codes.yml)
+- [Changelog](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/changelog/atmosic-changelog.yml)
+- [Lifecycle and versioning](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/lifecycle/atmosic-lifecycle.yml)
+- [Standards conformance](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/conformance/atmosic-conformance.yml)
+- [CLI and tooling](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/cli/atmosic-cli.yml)
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/security/atmosic-domain-security.yml)
+- [Well-known probe results](https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/well-known/atmosic-well-known.yml)
+
+## Apps
+
+- [Atmosic DevTools for iOS](https://apps.apple.com/us/app/atmosic-devtools/id1592941402)
+- [Atmosic DevTools for Android](https://play.google.com/store/apps/details?id=com.atmosic.devtoolstar)
+
+## Company
+
+- [About Atmosic](https://atmosic.com/company/) — San Jose, CA; investors include Sutter Hill Ventures, Clear Ventures, Walden International and Quantum Innovation Fund
+- [News](https://atmosic.com/news/)
+- [Partners](https://atmosic.com/partners/) — Bluetooth SIG, energy-harvesting and module partners
+- [Contact](https://atmosic.com/contact/)
+
+## Legal
+
+- [Privacy policy](https://atmosic.com/legal_privacy/)
+- [SDK license](https://atmosic.com/legal_sdk-license/)
+- [Third-party licences](https://atmosic.com/legal_3rd_party_licences/)
+- [Legal index](https://atmosic.com/legal/)

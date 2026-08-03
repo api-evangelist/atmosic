@@ -1,0 +1,104 @@
+generated: '2026-08-02'
+method: searched
+source: https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html
+scope: >-
+  Atmosic exposes no HTTP API, so the usual web-API conventions (bearer auth, cursor
+  pagination, idempotency keys, request-id tracing, rate-limit headers, JSON error
+  envelopes) do not apply. The programmable interface a host controller integrates
+  against is the OpenAir AT command set over UART, plus the C API surface of the
+  Zephyr-based SDK. This artifact captures those conventions.
+interface:
+  primary: AT command set over UART
+  transport: UART serial
+  enablement: CONFIG_AT_CMD_SET=y plus role-specific Kconfig options (peripheral, central, tag)
+  docs: https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html
+  secondary:
+  - kind: C API
+    description: Zephyr RTOS device driver and subsystem APIs exposed by the OpenAir SDK
+    docs: https://atmosic.com/public/OpenAir_SDK_doc/index.html
+  - kind: protobuf
+    description: atm_isp ISP archive format (proto3) consumed by the programming tooling
+    file: grpc/atmosic-atm-isp.proto
+command_syntax:
+  prefix: 'AT+'
+  forms:
+  - form: test
+    purpose: query command capabilities
+  - form: query
+    purpose: retrieve current parameter values
+  - form: execute
+    purpose: perform an action or set parameters
+  note: >-
+    Issuing a command in a form it does not support returns AT_CMD_ERR_WRONG_EXECUTE_TYPE
+    (ERR:7).
+response_conventions:
+  success: OK
+  failure_generic: 'ERR:<decimal at_cmd_err_t>'
+  failure_specific: "+<CMD>:<hex at_cmd_app_err_t> then ERR on the following line"
+  reference: errors/atmosic-error-codes.yml
+command_groups:
+- group: SYS
+  purpose: system operations
+  examples: [AT+SYSFUNCPIN, AT+SYSRESET, AT+SYSSTORAGE, AT+SYSPM, AT+SYSUARTBR, AT+SYSUARTFC]
+- group: BLE
+  purpose: Bluetooth LE GAP, advertising and scanning
+  examples: [AT+BLEGAPDEVNAME, AT+BLEADVENABLE, AT+BLESCANENABLE]
+- group: GATT
+  purpose: GATT server and client
+  examples: [AT+BLEGATTADDSERVICE, AT+BLEGATTADDCHAR, AT+BLEGATTADDDESC, AT+BLEGATTRD, AT+BLEGATTWR]
+- group: TAG
+  purpose: tag lifecycle
+  examples: [AT+TAGINFO, AT+TAGMODE, AT+TAGSTART]
+roles_supported:
+- peripheral
+- central
+- gatt-server
+- gatt-client
+- tag
+authentication:
+  model: none-at-interface
+  note: >-
+    The AT interface is a local physical UART link with no authentication layer; security
+    is enforced at the silicon and link layers — Arm TrustZone, hardware root of trust,
+    secure boot, secure debug (unlockable via sec_debug_unlock.py with a signed key), and
+    BLE pairing/encryption. GATT-level access control surfaces as the 0x74/0x77/0x7B/0x7E
+    insufficient-authentication / authorization / encryption-key-size / encryption errors.
+  sdk_access: >-
+    The open-source OpenAir SDK is public on GitHub. The commercial SDK, datasheets and
+    reference manuals are gated behind an NDA customer portal at https://atmosic.com/portal-login/.
+idempotency:
+  supported: false
+  note: >-
+    No idempotency contract. AT commands are stateful device operations against a single
+    serial session; several explicitly reject repetition rather than absorbing it — e.g.
+    AT_ERR_GAP_ROLE_INITIALIZED (0x01), AT_ERR_ADV_ALREADY_ENABLED (0x11) and
+    AT_ERR_BLE_EALREADY (0x4A). No Idempotency pointer is emitted for this provider.
+pagination:
+  supported: false
+  note: not applicable to a serial command interface
+rate_limiting:
+  supported: false
+  note: >-
+    No rate-limit signalling. Back-pressure is expressed as AT_ERR_BLE_EBUSY (0x41) and
+    AT_ERR_BLE_ETIMEDOUT (0x46).
+tracing:
+  request_id: false
+  note: no correlation identifier convention; responses are matched by serial ordering
+versioning:
+  scheme: calendar-version on the SDK (YY.MM.PATCH), not on the command interface
+  current: 26.06.0
+  reference: lifecycle/atmosic-lifecycle.yml
+cross_links:
+  errors: errors/atmosic-error-codes.yml
+  lifecycle: lifecycle/atmosic-lifecycle.yml
+  changelog: changelog/atmosic-changelog.yml
+  conformance: conformance/atmosic-conformance.yml
+  packages: packages/atmosic-packages.yml
+  cli: cli/atmosic-cli.yml
+x-evidence:
+- fetched: '2026-08-02'
+  url: https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html
+  http_status: 200
+- fetched: '2026-08-02'
+  url: https://atmosic.com/public/OpenAir_SDK_doc/openair/subsys/at_cmd_set/README_errors.html
+  http_status: 200

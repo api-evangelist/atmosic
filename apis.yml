@@ -1,7 +1,21 @@
 aid: atmosic
+image: https://atmosic.com/wp-content/uploads/2025/06/atmosic-logo.svg
 name: Atmosic
-description: 'Atmosic is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Atmosic Technologies is a fabless semiconductor company headquartered in San Jose,
+  California that designs ultra-low-power wireless system-on-chips for the Internet of
+  Things, with the stated goal of radically reducing — and in some deployments eliminating —
+  device dependence on batteries. Its ATM2, ATM3, ATM33/e and ATM34/e families combine
+  Bluetooth LE (plus 802.15.4 for Thread, Matter and Zigbee on the ATM34/e) radios with an
+  Arm Cortex-M33F application processor, Arm TrustZone, cryptographic accelerators, and
+  patented energy-harvesting and controlled wake-up receiver technology. Design wins include
+  Samsung's SmartTag2 and Google Android TV remote controls. Atmosic ships an EMBEDDED
+  developer surface rather than a public web API: the open-source OpenAir SDK built on the
+  Zephyr RTOS and distributed from the Atmosic GitHub organization as a west manifest, a
+  published AT command set for host control of BLE peripheral, central and GATT roles, an
+  atm_isp protobuf schema describing the in-system-programming archive format, desktop
+  programming and RF utilities, DevTools mobile apps, evaluation kits, and an NDA-gated
+  customer portal for the commercial SDK and datasheets.
 url: https://raw.githubusercontent.com/api-evangelist/atmosic/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -12,6 +26,16 @@ created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
+- Semiconductors
+- Bluetooth Low Energy
+- Wireless
+- Energy Harvesting
+- IoT
+- Embedded Systems
+- System on Chip
+- Zephyr RTOS
+- Low Power
+- Hardware
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +43,58 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/atmosic-domain-security.yml
+- type: Packages
+  url: packages/atmosic-packages.yml
+- type: SDKs
+  name: OpenAir SDK (Zephyr RTOS)
+  url: packages/atmosic-packages.yml
+- type: CLI
+  url: cli/atmosic-cli.yml
+- type: Protobuf
+  name: atm_isp ISP archive schema
+  url: grpc/atmosic-atm-isp.proto
+- type: ChangeLog
+  url: changelog/atmosic-changelog.yml
+- type: Lifecycle
+  url: lifecycle/atmosic-lifecycle.yml
+- type: Deprecation
+  url: https://github.com/Atmosic/openair/releases
+- type: Conformance
+  url: conformance/atmosic-conformance.yml
+- type: ErrorCatalog
+  url: errors/atmosic-error-codes.yml
+- type: Conventions
+  url: conventions/atmosic-conventions.yml
+- type: LLMsTxt
+  url: llms/atmosic-llms.txt
 - type: Website
-  url: https://forgeglobal.com/atmosic_stock/
+  url: https://atmosic.com/
+- type: GitHubOrganization
+  url: https://github.com/Atmosic
+- type: DeveloperPortal
+  url: https://atmosic.com/support_developer_kits/
+- type: Documentation
+  url: https://atmosic.com/public/OpenAir_SDK_doc/index.html
+- type: GettingStarted
+  url: https://atmosic.com/public/OpenAir_SDK_doc/getting_started_guide/installation.html
+- type: APIReference
+  url: https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html
+- type: Support
+  url: https://atmosic.com/contact/
+- type: Blog
+  url: https://atmosic.com/news/
+- type: Login
+  url: https://atmosic.com/portal-login/
+- type: PrivacyPolicy
+  url: https://atmosic.com/legal_privacy/
+- type: TermsOfService
+  url: https://atmosic.com/legal_sdk-license/
+- type: SourceCode
+  url: https://github.com/Atmosic/openair
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1

@@ -1,0 +1,94 @@
+generated: '2026-08-02'
+method: searched
+source: https://github.com/Atmosic/openair/releases
+subject: OpenAir SDK (Atmosic open-source Zephyr RTOS SDK)
+scheme: calendar-version
+scheme_notes: >-
+  Releases are tagged YY.MM.PATCH (e.g. 26.06.0) and mirrored as rel_<version> branches.
+  Patch releases (25.07.1, 25.07.2, 25.11.1) are cut on top of a base release; superseded
+  releases are relabelled "[DEPRECATED] Do not use this version" in the release notes with
+  a link to the replacement.
+current_version: 26.06.0
+current_version_date: '2026-06-30'
+docs: https://atmosic.com/public/OpenAir_SDK_doc/index.html
+entries:
+- version: 26.06.0
+  date: '2026-06-30'
+  tag: rel_26.06.0
+  url: https://github.com/Atmosic/openair/releases/tag/26.06.0
+  breaking: false
+  highlights:
+  - Base Zephyr kernel updated to 4.4.0
+  - ATM34 module introduction
+  - AT command support added to the multimode_consumer_tag application
+  - AT Command Application supports Peripheral and Central roles and GATT server/client
+- version: 26.04.0
+  date: '2026-04-17'
+  tag: rel_26.04.0
+  url: https://github.com/Atmosic/openair/releases/tag/26.04.0
+  breaking: false
+  highlights:
+  - Base Zephyr kernel updated to 4.3.0
+  - MCUboot swap-with-offset support added and enabled by default
+  - Coin Cell Battery Management (CCBM) driver added for battery impedance measurement
+  - Google FindHub Network support
+- version: 25.11.1
+  date: '2026-01-23'
+  tag: rel_25.11.1
+  url: https://github.com/Atmosic/openair/releases/tag/25.11.1
+  breaking: false
+  type: patch
+  supersedes: 25.11.0
+  highlights:
+  - Resolves a critical hang/crash on ATM34 when power management lowers the backplane clock and the system enters WFI
+  - Resolves a critical hang/crash when parsing tags in a malformed secure journal
+- version: 25.07.2
+  date: '2026-01-23'
+  tag: rel_25.07.2
+  url: https://github.com/Atmosic/openair/releases/tag/25.07.2
+  breaking: false
+  type: patch
+  highlights:
+  - Same ATM34 WFI hang and malformed-secure-journal fixes backported to the 25.07 line
+- version: 25.11.0
+  date: '2025-11-24'
+  tag: rel_25.11.0
+  url: https://github.com/Atmosic/openair/releases/tag/25.11.0
+  deprecated: true
+  superseded_by: 25.11.1
+  highlights:
+  - Base Zephyr kernel updated to 4.2.0
+  - No-TrustZone support — build a monolithic application with both secure and non-secure access
+- version: 25.07.1
+  date: '2025-08-28'
+  tag: rel_25.07.1
+  url: https://github.com/Atmosic/openair/releases/tag/25.07.1
+  deprecated: true
+  superseded_by: 25.07.2
+- version: 25.07.0
+  date: '2025-07-19'
+  tag: rel_25.07.0
+  url: https://github.com/Atmosic/openair/releases/tag/25.07.0
+  breaking: true
+  highlights:
+  - ATMx2xx platforms deprecated as of this release; OpenAir targets ATM33/e and ATM34/e
+- version: 25.05.0
+  date: '2025-05-30'
+  url: https://github.com/Atmosic/openair/releases/tag/25.05.0
+- version: 25.03.0
+  date: '2025-03-25'
+  url: https://github.com/Atmosic/openair/releases/tag/25.03.0
+- version: 25.02.0
+  date: '2025-03-01'
+  url: https://github.com/Atmosic/openair/releases/tag/25.02.0
+earlier_releases:
+- {version: 25.01.1, date: '2025-01-17'}
+- {version: 25.01.0, date: '2025-01-06'}
+- {version: 24.11.0, date: '2024-11-20'}
+- {version: 24.09.0, date: '2024-10-01'}
+- {version: 24.08.0, date: '2024-08-20'}
+- {version: 24.06.0, date: '2024-07-02'}
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://api.github.com/repos/Atmosic/openair/releases
+  http_status: 200

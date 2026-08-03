@@ -1,0 +1,121 @@
+generated: '2026-08-02'
+method: searched
+source: https://atmosic.com/public/OpenAir_SDK_doc/openair/subsys/at_cmd_set/README_errors.html
+format: at-command
+format_note: >-
+  Not RFC 9457 — Atmosic ships no HTTP API. Errors are returned by the OpenAir AT command
+  set over UART. Generic framework errors are returned as ERR:<code> where <code> is the
+  decimal value of at_cmd_err_t (1-7). Command-specific errors are returned as
+  +<CMD>:<hex_app_err> on one line followed by ERR on the next, where <hex_app_err> is an
+  at_cmd_app_err_t value. Successful commands respond OK.
+envelope:
+  success: OK
+  generic_error: 'ERR:<decimal at_cmd_err_t>'
+  specific_error: "+<CMD>:<hex at_cmd_app_err_t>\\nERR"
+families:
+- name: at_cmd_err_t
+  description: AT command framework errors
+  radix: decimal
+  codes:
+  - {code: 0, constant: AT_CMD_ERR_NO_ERROR, meaning: No error; command executed successfully (OK response)}
+  - {code: 1, constant: AT_CMD_ERR_NOT_SUPPORT, meaning: Command not supported — Kconfig symbol disabled or operation not implemented}
+  - {code: 2, constant: AT_CMD_ERR_WRONG_ARGU_CNT, meaning: Wrong number of arguments supplied}
+  - {code: 3, constant: AT_CMD_ERR_WRONG_ARGU_RANGE, meaning: One or more argument values are outside the permitted range}
+  - {code: 4, constant: AT_CMD_ERR_WRONG_ARGU_TYPE, meaning: An argument has an unexpected type}
+  - {code: 5, constant: AT_CMD_ERR_WRONG_ARGU_TYPE_OR_RANGE, meaning: An argument has the wrong type or is out of range}
+  - {code: 6, constant: AT_CMD_ERR_WRONG_ARGU_CONTENT, meaning: Argument content is syntactically valid but semantically rejected}
+  - {code: 7, constant: AT_CMD_ERR_WRONG_EXECUTE_TYPE, meaning: The command form used (test / query / execute) is not supported}
+  - {code: '0x80', constant: AT_CMD_ERR_SPECIFIC_ERR, meaning: Command-specific error; the +<CMD>:<hex_app_err> prefix carries the at_cmd_app_err_t value}
+- name: at_cmd_app_err_t
+  description: Application-level AT command errors
+  radix: hex
+  groups:
+  - group: gap
+    codes:
+    - {code: '0x00', constant: AT_ERR_NONE, meaning: No error}
+    - {code: '0x01', constant: AT_ERR_GAP_ROLE_INITIALIZED, meaning: GAP role is already initialised; cannot re-initialise}
+    - {code: '0x02', constant: AT_ERR_GAP_ROLE_NOT_SUPPORTED, meaning: Requested GAP role is not supported by this build}
+    - {code: '0x03', constant: AT_ERR_GAP_SET_BEFORE_INIT, meaning: Parameter must be configured before bt_enable()}
+    - {code: '0x04', constant: AT_ERR_GAP_SET_AFTER_INIT, meaning: Parameter must be configured after bt_enable()}
+    - {code: '0x05', constant: AT_ERR_GAP_ONLY_STATIC_RND_ADDR, meaning: Only static random addresses are supported}
+  - group: advertising
+    codes:
+    - {code: '0x10', constant: AT_ERR_ADV_INVALID_INDEX, meaning: Advertising set index is out of range (>= AT_CMD_ADV_MAX_INST)}
+    - {code: '0x11', constant: AT_ERR_ADV_ALREADY_ENABLED, meaning: Advertising is already active on the specified set}
+    - {code: '0x12', constant: AT_ERR_ADV_NOT_ENABLED, meaning: Advertising is not currently active on the specified set}
+    - {code: '0x13', constant: AT_ERR_ADV_SET_NOT_CREATED, meaning: Extended advertising set has not been created yet}
+    - {code: '0x14', constant: AT_ERR_ADV_INVALID_PARAM, meaning: One or more advertising parameters are invalid}
+    - {code: '0x15', constant: AT_ERR_ADV_DATA_TOO_LONG, meaning: Advertisement payload exceeds AT_CMD_MAX_ADV_DATA_LEN}
+    - {code: '0x16', constant: AT_ERR_ADV_SCAN_DATA_TOO_LONG, meaning: Scan-response payload exceeds AT_CMD_MAX_ADV_DATA_LEN}
+  - group: context
+    codes:
+    - {code: '0x20', constant: AT_ERR_CTX_NULL, meaning: AT command context pointer is NULL}
+    - {code: '0x21', constant: AT_ERR_CTX_NOT_INITIALIZED, meaning: AT command context has not been initialised}
+  - group: parameters
+    codes:
+    - {code: '0x30', constant: AT_ERR_PARAM_INVALID, meaning: Parameter value is invalid for this operation}
+    - {code: '0x31', constant: AT_ERR_PARAM_OUT_OF_RANGE, meaning: Parameter value is outside the accepted range}
+    - {code: '0x32', constant: AT_ERR_PARAM_INVALID_LENGTH, meaning: Parameter length is invalid (too short or too long)}
+  - group: ble-errno
+    note: maps Zephyr/POSIX errno values returned by the BLE stack
+    codes:
+    - {code: '0x40', constant: AT_ERR_BLE_EINVAL, meaning: Maps EINVAL — invalid argument passed to a BLE/Zephyr API}
+    - {code: '0x41', constant: AT_ERR_BLE_EBUSY, meaning: Maps EBUSY — BLE device or resource is busy}
+    - {code: '0x42', constant: AT_ERR_BLE_ENOMEM, meaning: Maps ENOMEM — out of memory in the BLE stack}
+    - {code: '0x43', constant: AT_ERR_BLE_ENOTSUP, meaning: Maps ENOTSUP — operation not supported by the BLE stack}
+    - {code: '0x44', constant: AT_ERR_BLE_EACCES, meaning: Maps EACCES — permission denied (e.g. insufficient security)}
+    - {code: '0x45', constant: AT_ERR_BLE_ENODEV, meaning: Maps ENODEV — BLE device not found or not ready}
+    - {code: '0x46', constant: AT_ERR_BLE_ETIMEDOUT, meaning: Maps ETIMEDOUT — BLE operation timed out}
+    - {code: '0x47', constant: AT_ERR_BLE_ECONNREFUSED, meaning: Maps ECONNREFUSED — connection request was refused}
+    - {code: '0x48', constant: AT_ERR_BLE_ECONNRESET, meaning: Maps ECONNRESET — connection was reset by the remote peer}
+    - {code: '0x49', constant: AT_ERR_BLE_EPIPE, meaning: Maps EPIPE — broken pipe / write on a closed connection}
+    - {code: '0x4A', constant: AT_ERR_BLE_EALREADY, meaning: Maps EALREADY — operation already in progress, or address already set}
+    - {code: '0x4F', constant: AT_ERR_BLE_UNKNOWN, meaning: Unrecognised BLE/Zephyr errno (catch-all)}
+  - group: gpio
+    codes:
+    - {code: '0x50', constant: AT_ERR_GPIO_NOT_READY, meaning: GPIO device (gpio0) is not ready. Used by SYSFUNCPIN and SYSPM}
+    - {code: '0x51', constant: AT_ERR_GPIO_CONFIG, meaning: gpio_pin_configure() or gpio_pin_interrupt_configure() failed}
+  - group: system
+    codes:
+    - {code: '0x60', constant: AT_ERR_SYS_NEED_REBOOT, meaning: A reboot is required for the requested setting to take effect}
+    - {code: '0x61', constant: AT_ERR_SYS_NOT_READY, meaning: System subsystem is not ready}
+    - {code: '0x62', constant: AT_ERR_SYS_UART_NOT_READY, meaning: Console UART device is not ready. Used by SYSUARTBR and SYSUARTFC}
+    - {code: '0x63', constant: AT_ERR_SYS_UART_CONFIG, meaning: uart_configure() or uart_config_get() failed}
+  - group: gatt
+    codes:
+    - {code: '0x70', constant: AT_ERR_GATT_INVALID_HANDLE, meaning: GATT attribute handle is invalid or out of range}
+    - {code: '0x71', constant: AT_ERR_GATT_READ_NOT_PERMITTED, meaning: Read operation is not permitted on this attribute}
+    - {code: '0x72', constant: AT_ERR_GATT_WRITE_NOT_PERMITTED, meaning: Write operation is not permitted on this attribute}
+    - {code: '0x73', constant: AT_ERR_GATT_INVALID_PDU, meaning: Received GATT PDU is invalid}
+    - {code: '0x74', constant: AT_ERR_GATT_INSUFF_AUTHEN, meaning: Insufficient authentication to access this attribute}
+    - {code: '0x75', constant: AT_ERR_GATT_REQUEST_NOT_SUPPORTED, meaning: GATT request opcode is not supported}
+    - {code: '0x76', constant: AT_ERR_GATT_INVALID_OFFSET, meaning: Attribute value offset is beyond the end of the value}
+    - {code: '0x77', constant: AT_ERR_GATT_INSUFF_AUTHOR, meaning: Insufficient authorization to access this attribute}
+    - {code: '0x78', constant: AT_ERR_GATT_PREPARE_QUEUE_FULL, meaning: Prepare-write queue is full}
+    - {code: '0x79', constant: AT_ERR_GATT_ATTRIBUTE_NOT_FOUND, meaning: No attribute found within the handle range}
+    - {code: '0x7A', constant: AT_ERR_GATT_ATTRIBUTE_NOT_LONG, meaning: Attribute is not a long attribute; long read/write not applicable}
+    - {code: '0x7B', constant: AT_ERR_GATT_INSUFF_ENC_KEY_SIZE, meaning: Encryption key size is insufficient for this attribute}
+    - {code: '0x7C', constant: AT_ERR_GATT_INVALID_ATTR_VAL_LEN, meaning: Attribute value length is invalid for a write operation}
+    - {code: '0x7D', constant: AT_ERR_GATT_UNLIKELY, meaning: Unlikely GATT error (catch-all for unexpected ATT errors)}
+    - {code: '0x7E', constant: AT_ERR_GATT_INSUFF_ENC, meaning: Insufficient encryption level for this attribute}
+    - {code: '0x7F', constant: AT_ERR_GATT_UNSUPPORTED_GRP_TYPE, meaning: Attribute group type is not supported}
+    - {code: '0x80', constant: AT_ERR_GATT_DYN_SVC_ACTIVE, meaning: Service is already active; characteristics/descriptors cannot be added}
+    - {code: '0x83', constant: AT_ERR_GATT_DYN_NO_SVC, meaning: No BLEGATTADDSERVICE issued, or all staged services are already active}
+    - {code: '0x84', constant: AT_ERR_GATT_DYN_NO_CHAR, meaning: No BLEGATTADDCHAR issued before BLEGATTADDDESC}
+- name: at_cmd_tag_err_t
+  description: Tag application errors
+  radix: decimal
+  codes:
+  - {code: 0, constant: AT_CMD_TAG_NO_ERR, meaning: Operation completed successfully}
+  - {code: 1, constant: AT_CMD_TAG_ERR_INVALID_PARAM, meaning: Invalid parameter (e.g. NULL pointer passed to callback)}
+  - {code: 2, constant: AT_CMD_TAG_ERR_NOT_ALLOWED, meaning: Operation not allowed in the current tag state}
+  - {code: 3, constant: AT_CMD_TAG_ERR_INTERNAL, meaning: Internal or platform-level error}
+  - {code: 4, constant: AT_CMD_TAG_ERR_BLE_INIT, meaning: BLE stack initialisation failed}
+  - {code: 5, constant: AT_CMD_TAG_ERR_MOTION_SENSOR, meaning: Motion sensor error}
+  - {code: 6, constant: AT_CMD_TAG_ERR_BUTTON, meaning: Button configuration error}
+  - {code: 7, constant: AT_CMD_TAG_ERR_WDOG, meaning: Watchdog configuration error}
+  - {code: 8, constant: AT_CMD_TAG_ERR_BUZZER, meaning: Buzzer configuration error}
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://atmosic.com/public/OpenAir_SDK_doc/openair/subsys/at_cmd_set/README_errors.html
+  http_status: 200
