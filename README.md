@@ -64,11 +64,87 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Atmosic Technologies is a fabless semiconductor company headquartered in San Jose, California that designs ultra-low-power Bluetooth LE and 802.15.4 system-on-chips for the Internet of Things, built around patented energy-harvesting and controlled wake-up receiver technology.
+Atmosic Technologies is a fabless semiconductor company headquartered in San Jose, California that designs ultra-low-power wireless system-on-chips for the Internet of Things, with the stated goal of radically reducing — and in some deployments eliminating — device dependence on batteries. Its ATM2, ATM3, ATM33/e and ATM34/e families combine Bluetooth LE (plus 802.15.4 for Thread, Matter and Zigbee on the ATM34/e) radios with an Arm Cortex-M33F application processor, Arm TrustZone, cryptographic accelerators, and patented energy-harvesting and controlled wake-up receiver technology. Design wins include Samsung's SmartTag2 and Google Android TV remote controls. Atmosic ships an EMBEDDED developer surface rather than a public web API: the open-source OpenAir SDK built on the Zephyr RTOS and distributed from the Atmosic GitHub organization as a west manifest, a published AT command set for host control of BLE peripheral, central and GATT roles, an atm_isp protobuf schema describing the in-system-programming archive format, desktop programming and RF utilities, DevTools mobile apps, evaluation kits, and an NDA-gated customer portal for the commercial SDK and datasheets.
 
-Atmosic publishes an **embedded** developer surface rather than a public web API. Contract discovery on 2026-08-02 found no OpenAPI, GraphQL, MCP server, AsyncAPI, agent card or `/.well-known/` documents on any Atmosic host. The programmable surface is the open-source OpenAir SDK (Zephyr RTOS), an AT command set over UART, an `atm_isp` protobuf schema, and desktop programming tooling.
+**Areas:** Company · Semiconductors · Bluetooth Low Energy · Wireless · Energy Harvesting · IoT · Embedded Systems · System on Chip · Zephyr RTOS · Low Power · Hardware
 
-- Website: https://atmosic.com/
-- GitHub organization: https://github.com/Atmosic
-- OpenAir SDK docs: https://atmosic.com/public/OpenAir_SDK_doc/index.html
-- Developer kits: https://atmosic.com/support_developer_kits/
+## Atmosic on APIs.io
+
+Everything profiled for Atmosic is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/atmosic/](https://apis.io/providers/atmosic/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Atmosic Domain Security](https://apis.io/security/atmosic/atmosic-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://atmosic.com/)
+- [Documentation](https://atmosic.com/public/OpenAir_SDK_doc/index.html)
+- [Getting started](https://atmosic.com/public/OpenAir_SDK_doc/getting_started_guide/installation.html)
+- [API reference](https://atmosic.com/public/OpenAir_SDK_doc/at_cmd/at_cmd.html)
+- [Support](https://atmosic.com/contact/)
+- [Blog](https://atmosic.com/news/)
+- [Terms of service](https://atmosic.com/legal_sdk-license/)
+- [Privacy policy](https://atmosic.com/legal_privacy/)
+- [GitHub](https://github.com/Atmosic)
+
+## API Evangelist rating
+
+**Kin Score 34.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 24.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 59.5 |
+| Access clarity | 27.6 |
+
+**Agent readiness 15.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.6** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/atmosic/](https://apis.io/providers/atmosic/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Atmosic: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/atmosic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
